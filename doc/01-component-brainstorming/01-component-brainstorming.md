@@ -1,8 +1,8 @@
 # Portfolio Part 1: Component Brainstorming
 
-- **Name**: <!-- TODO: fill with first and last name (e.g., Brutus Buckeye) then delete this comment -->
-- **Dot Number**: <!-- TODO: fill with OSU dot number (e.g., buckeye.17) then delete this comment -->
-- **Due Date**: <!-- TODO: fill with due date and time (e.g., 10/17 @ 3:10 PM EST) then delete this comment -->
+- **Name**: Noah Rhea <!-- TODO: fill with first and last name (e.g., Brutus Buckeye) then delete this comment -->
+- **Dot Number**: rhea.67<!-- TODO: fill with OSU dot number (e.g., buckeye.17) then delete this comment -->
+- **Due Date**: N/A <!-- TODO: fill with due date and time (e.g., 10/17 @ 3:10 PM EST) then delete this comment -->
 
 ## Assignment Overview
 
@@ -111,6 +111,8 @@ Also, protip: you can preview what your response looks like by hitting
 the magnifying glass icon in the upper-right corner or pressing CTRL+K and
 then V. This kind of button combination is called a chord, for whatever
 reason -->
+Interests: Guitar/Music, fitness/lifting, Game Development, Football/Sports
+Ideas: Note to string position for guitar,
 
 ## Assignment
 
@@ -211,11 +213,20 @@ will likely refine your design to make your implementation easier to use.
 
 > Please use this section to share your designs.
 
-- Component Design #1: <!-- TODO: give component a name then delete this comment -->
+- Component Design #1: Fretboard
   - **Description**:
-    - <!-- TODO: describe your component then delete this comment -->
+    - Manages number of Strings and frets on a stringed instrument, as well as tuning of the instrument(guitar).
+
   - **Kernel Methods**:
     - <!-- TODO: list kernel methods then delete this comment -->
+    Need to be sorted:
+    changeTuning() -- adjusts tuning
+    noteAt() -- finds note at specific position
+    stringCount() -- number of strings
+    FretCount() -- number of frets
+    findPosition() -- find positions of note on single string or instrument.
+    chord()? -- takes notes/positions and returns chord being played.
+
   - **Secondary Methods**:
     - <!-- TODO: list secondary methods then delete this comment -->
   - **Additional Considerations** (*note*: "I don't know" is an acceptable
