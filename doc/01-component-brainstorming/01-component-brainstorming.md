@@ -218,21 +218,25 @@ will likely refine your design to make your implementation easier to use.
     - Manages number of Strings and frets on a stringed instrument, as well as tuning of the instrument(guitar).
 
   - **Kernel Methods**:
-    - <!-- TODO: list kernel methods then delete this comment -->
+
     Need to be sorted:
-    changeTuning() -- adjusts tuning
-    noteAt() -- finds note at specific position
-    stringCount() -- number of strings
-    FretCount() -- number of frets
-    findPosition() -- find positions of note on single string or instrument.
-    chord()? -- takes notes/positions and returns chord being played.
+    changeTuning(int string, Note n) -- adjusts tuning of strings
+    stringCount() -- returns number of strings
+    FretCount() -- returns number of frets
+    tuningOf() -- Returns open note of a string
 
   - **Secondary Methods**:
-    - <!-- TODO: list secondary methods then delete this comment -->
+
+    noteAt(int string, int fret) -- finds note at specific position
+    findPositions(Note n)
+    findPositions(Note n, int string);
+    POSSIBLE OTHERS:
+    isStandartTuning() -- checks if tuning is standard;
+    openStrings() -- returns open notes of the strings;
   - **Additional Considerations** (*note*: "I don't know" is an acceptable
     answer for each of the following questions):
     - Would this component be mutable? Answer and explain:
-      - <!-- TODO: provide an argument then delete this comment -->
+      - I think so because the tuning of each string can change, However, the number of strings and frets cannot change.
     - Would this component rely on any internal classes (e.g., `Map.Pair`)?
       Answer and explain:
       - <!-- TODO: provide an argument then delete this comment -->
