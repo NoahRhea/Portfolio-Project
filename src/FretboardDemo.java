@@ -13,18 +13,22 @@ import java.util.List;
 public class FretboardDemo {
 
     /**
-     * Nested types and constants
+     * Nested types and constants.
      */
 
     public enum Note {
-        //Standard Notes in western music.
+        /** Standard Notes in English music. */
         C, C_SHARP, D, D_SHARP, E, F, F_SHARP, G, G_SHARP, A, A_SHARP, B;
 
-        //Flat Notes of comparable sharp notes.
+        /** Flat Notes of comparable sharp notes. */
         public static final Note D_FLAT = C_SHARP;
+        /** E flat to D Sharp. */
         public static final Note E_FLAT = D_SHARP;
+        /** G flat to F sharp. */
         public static final Note G_FLAT = F_SHARP;
+        /** A flat to G sharp. */
         public static final Note A_FLAT = G_SHARP;
+        /** B flat to A sharp. */
         public static final Note B_FLAT = A_SHARP;
     }
 
@@ -32,25 +36,42 @@ public class FretboardDemo {
      * Location on the fretboard by string and fret.
      */
     public static class Position {
+        /** Number of strings. */
         private final int string;
+        /** Number of fret. */
         private final int fret;
 
+        /**
+         * @param string
+         * @param fret
+         */
         public Position(int string, int fret) {
             this.string = string;
             this.fret = fret;
         }
 
-        public int string() {
+        /**
+         * @return string
+         */
+        public final int string() {
             return this.string;
         }
 
-        public int fret() {
+        /**
+         * @return fret
+         */
+        public final int fret() {
             return this.fret;
+        }
+
+        @Override
+        public final String toString() {
+            return "s" + this.string + ":f" + this.fret;
         }
     }
 
     /** Standard tuning for a guitar. */
-    public static final Note[] STANDARD_TUNING = { Note.E, Note.A, Note.D,
+    private static final Note[] STANDARD_TUNING = { Note.E, Note.A, Note.D,
             Note.G, Note.B, Note.E };
     /** Base number of frets. */
     public static final int BASE_FRET = 20;
@@ -80,7 +101,7 @@ public class FretboardDemo {
     public FretboardDemo(Note[] tuning, int frets) {
         assert tuning.length > 0 : "Violation of: at least one string.";
         assert frets > 0 : "Violation of: at least one fret.";
-        this.tuning = tuning;
+        this.tuning = tuning.clone();
         this.frets = frets;
     }
 
@@ -90,7 +111,7 @@ public class FretboardDemo {
 
     /**
      * Finds the positions of a given note on a given string of an instrument.
-     * 
+     *
      * @param n
      * @param string
      * @return an arrayList of positions that have the value of note n.
@@ -102,7 +123,7 @@ public class FretboardDemo {
 
     /**
      * Finds the positions of a given note on all strings of an instrument.
-     * 
+     *
      * @param n
      * @return an arrayList of Positions that have the value of note n.
      */
@@ -122,12 +143,16 @@ public class FretboardDemo {
 
     /**
      * Finds the note value at a certain fret of a certain string.
-     * 
+     *
      * @param string
      * @param fret
      * @return the note of the position
      */
     public Note noteAt(int string, int fret) {
+        assert (fret <= this.fretCount())
+                && (fret >= 0) : "Violation of: Fret does not exist.";
+        assert (string <= this.stringCount())
+                && (string >= 0) : "Violation of: String does not exist.";
         Note n = this.tuningOf(string); //returns Note
         int pos = n.ordinal(); //position in notes of base note
         pos += fret; // pos is original position of note + fret number
@@ -142,7 +167,7 @@ public class FretboardDemo {
 
     /**
      * Changes the tuning of a string to the given note n.
-     * 
+     *
      * @param string
      * @param n
      */
@@ -152,7 +177,7 @@ public class FretboardDemo {
 
     /**
      * Counts the number of strings.
-     * 
+     *
      * @return an integer of the number of strings.
      */
     public int stringCount() {
@@ -161,7 +186,7 @@ public class FretboardDemo {
 
     /**
      * Counts the number of frets.
-     * 
+     *
      * @return an integer of the number of frets.
      */
     public int fretCount() {
@@ -181,9 +206,22 @@ public class FretboardDemo {
      * Main Demo
      */
 
+    /**
+     * @param args
+     */
     public static void main(String[] args) {
-        //LEFT OFF HERE
-        FretboardDemo guitar = new FretboardDemo();
+        int frets = 22;
+        Note[] dropD = { Note.D, Note.A, Note.D, Note.G, Note.B, Note.E };
+        FretboardDemo guitar = new FretboardDemo(dropD, frets);
+        System.out.println(guitar.tuningOf(1)); //A
+        System.out.println(guitar.fretCount()); //22
+        System.out.println(guitar.stringCount()); //6
+        System.out.println(guitar.noteAt(5, 18)); //A_SHARP
+        List<Position> findA = guitar.findPositions(Note.D_SHARP);
+        for (int i = 0; i < findA.size(); i++) { //print every position of note A
+            Position curr = findA.get(i);
+            System.out.print(curr.toString() + ", ");
+        }
 
     }
 
