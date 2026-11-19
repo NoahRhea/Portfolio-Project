@@ -101,7 +101,7 @@ public class FretboardDemo {
     public FretboardDemo(Note[] tuning, int frets) {
         assert tuning.length > 0 : "Violation of: at least one string.";
         assert frets > 0 : "Violation of: at least one fret.";
-        this.tuning = tuning.clone();
+        this.tuning = tuning.clone(); //use clone because ailiasing.
         this.frets = frets;
     }
 
@@ -217,7 +217,7 @@ public class FretboardDemo {
         System.out.println(guitar.fretCount()); //22
         System.out.println(guitar.stringCount()); //6
         System.out.println(guitar.noteAt(5, 18)); //A_SHARP
-        List<Position> findA = guitar.findPositions(Note.D_SHARP);
+        List<Position> findA = guitar.findPositions(Note.A);
         for (int i = 0; i < findA.size(); i++) { //print every position of note A
             Position curr = findA.get(i);
             System.out.print(curr.toString() + ", ");
